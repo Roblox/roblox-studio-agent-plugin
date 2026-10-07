@@ -1,0 +1,127 @@
+{
+  "tools": [
+    {
+      "name": "list_roblox_studios",
+      "description": "Lists the connected Roblox Studio instances so a call can be directed at one. Several instances are commonly open at once, so every tool call must include a `studio_id` identifying the target instance \u2014 call this tool first to obtain the ids. Each result has an `id` and a human-readable `name` (including its place id or file name); use the `name` to choose the intended instance, confirming with the user before modifying their game.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "get_studio_state",
+      "description": "Get the state of the studio, including current play state and available datamodel types. If the studio state is not expected, please call start_stop_play tool to start or stop the play.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "studio_id": {
+            "description": "Selects Roblox Studio instance, use the list_roblox_studios tool to get available instances",
+            "type": "string"
+          }
+        },
+        "required": [
+          "studio_id"
+        ]
+      }
+    },
+    {
+      "name": "get_console_output",
+      "description": "Get the console output from the Studio output log.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "studio_id": {
+            "description": "Selects Roblox Studio instance, use the list_roblox_studios tool to get available instances",
+            "type": "string"
+          }
+        },
+        "required": [
+          "studio_id"
+        ]
+      }
+    },
+    {
+      "name": "search_game_tree",
+      "description": "Explore the Roblox game hierarchy tree with flat JSON output.\nReturns an array of JSON objects representing instances in the Data Model, showing names, paths, and relationships.\nUse optional filters to narrow down results by path, instance type, or keywords.\nFor detailed inspection of a specific instance's properties and attributes, use the Inspect Instance tool.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "datamodel_type": {
+            "description": "The target datamodel to operate on, the tool can only be performed in those datamodel types. call get_studio_state to get current available datamodel types. if the target datamodel is not available in current mode, consider using start_stop_play to switch to the desired mode and then use the tools. This is a required argument.",
+            "enum": [
+              "Edit",
+              "Client",
+              "Server"
+            ],
+            "type": "string"
+          },
+          "head_limit": {
+            "description": "Maximum number of results to return. Default: 200.",
+            "type": "number"
+          },
+          "instance_type": {
+            "description": "Filter by ClassName using IsA() check. Examples: 'BasePart', 'BaseScript', 'GuiObject', 'Model', 'Folder'. Case sensitive.",
+            "type": "string"
+          },
+          "keywords": {
+            "description": "Filter by instance name keywords (case-insensitive). Separate multiple keywords with commas or spaces.",
+            "type": "string"
+          },
+          "max_depth": {
+            "description": "Maximum absolute depth to traverse from start point. Default: 3, Absolute max: 10.",
+            "type": "number"
+          },
+          "path": {
+            "description": "Start exploration from this path. Examples: 'Workspace', 'ServerScriptService', 'Workspace.Models'. Path is case-sensitive.",
+            "type": "string"
+          },
+          "studio_id": {
+            "description": "Selects Roblox Studio instance, use the list_roblox_studios tool to get available instances",
+            "type": "string"
+          }
+        },
+        "required": [
+          "datamodel_type",
+          "studio_id"
+        ]
+      }
+    },
+    {
+      "name": "execute_luau",
+      "description": "Executes Luau code in Roblox Studio. Returns the result of the executed code or an error message if the code fails to execute.",
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "code": {
+            "description": "The Luau code to execute.",
+            "type": "string"
+          },
+          "datamodel_type": {
+            "description": "The target datamodel to operate on, the tool can only be performed in those datamodel types. call get_studio_state to get current available datamodel types. if the target datamodel is not available in current mode, consider using start_stop_play to switch to the desired mode and then use the tools. This is a required argument.",
+            "enum": [
+              "Edit",
+              "Client",
+              "Server"
+            ],
+            "type": "string"
+          },
+          "studio_id": {
+            "description": "Selects Roblox Studio instance, use the list_roblox_studios tool to get available instances",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "datamodel_type",
+          "studio_id"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "roblox-studio",
+  "displayName": "Roblox Studio",
+  "version": "0.2.1",
+  "description": "Build, script, and playtest Roblox experiences with Claude. Connects Claude to Roblox Studio's built-in MCP server and walks you through setup: installing and launching Studio with your approval, turning on the MCP server, and confirming the connection.",
+  "author": {
+    "name": "Roblox",
+    "url": "https://create.roblox.com"
+  },
+  "homepage": "https://create.roblox.com/docs/studio/mcp",
+  "repository": "https://github.com/Roblox/roblox-studio-agent-plugin",
+  "license": "MIT",
+  "icon": "./assets/icon.png",
+  "keywords": [
+    "roblox",
+    "roblox-studio",
+    "luau",
+    "game-development",
+    "playtesting"
+  ],
+  "mcpServers": {
+    "macos": {
+      "command": "/bin/sh",
+      "args": [
+        "-c",
+        "for candidate in \"/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP\" \"$HOME/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP\"; do [ -x \"$candidate\" ] && exec \"$candidate\"; done; echo \"Roblox Studio MCP was not found. Install or update Roblox Studio, then reconnect.\" >&2; exit 1"
+      ]
+    },
+    "windows": {
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "cd /d %LOCALAPPDATA%\\Roblox && .\\mcp.bat"
+      ]
+    }
+  },
+  "documentationUrl": "https://create.roblox.com/docs/studio/mcp",
+  "supportUrl": "https://devforum.roblox.com",
+  "privacyPolicyUrl": "https://www.roblox.com/info/privacy",
+  "termsOfServiceUrl": "https://www.roblox.com/info/terms"
+}

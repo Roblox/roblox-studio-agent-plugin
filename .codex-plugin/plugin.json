@@ -1,0 +1,54 @@
+{
+  "name": "roblox-studio",
+  "version": "0.2.1",
+  "description": "Connect ChatGPT and Codex to Roblox Studio: install, sign in, open a place, and enable and register Studio's MCP server.",
+  "author": {
+    "name": "Roblox",
+    "url": "https://create.roblox.com"
+  },
+  "homepage": "https://create.roblox.com/docs/studio/mcp",
+  "repository": "https://github.com/Roblox/roblox-studio-agent-plugin",
+  "license": "MIT",
+  "keywords": [
+    "roblox",
+    "roblox studio",
+    "luau",
+    "make a game",
+    "game development",
+    "obby",
+    "tycoon",
+    "3d",
+    "multiplayer"
+  ],
+  "skills": "./skills/",
+  "requires_local_executor": true,
+  "interface": {
+    "displayName": "Roblox Studio",
+    "shortDescription": "Make Roblox games with ChatGPT",
+    "longDescription": "Get Roblox Studio connected to ChatGPT so you can make games in plain English. ChatGPT checks what's missing, asks once, then installs and opens Studio and connects to Studio's MCP server. You just sign in, open a place, and flip one switch. Say \"continue Roblox setup\" in a new chat to pick up where you left off. Requires the ChatGPT desktop app or Codex, and Roblox Studio on Mac or Windows.",
+    "developerName": "Roblox",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Help me make my first Roblox game",
+      "Connect ChatGPT to Roblox Studio",
+      "Continue Roblox setup"
+    ],
+    "websiteURL": "https://create.roblox.com/docs/studio/mcp",
+    "privacyPolicyURL": "https://www.roblox.com/info/privacy",
+    "termsOfServiceURL": "https://www.roblox.com/info/terms",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "logoDark": "./assets/icon.png",
+    "screenshots": []
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/roblox-get-started/SKILL.md"
+    }
+  }
+}
