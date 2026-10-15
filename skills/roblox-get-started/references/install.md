@@ -16,12 +16,16 @@ pgrep -x RobloxStudio >/dev/null && echo RUNNING || echo NOT_RUNNING
 **Windows (PowerShell):**
 
 ```powershell
-$studio = Get-ChildItem "$env:LOCALAPPDATA\Roblox\Versions\*\RobloxStudioBeta.exe", "${env:ProgramFiles(x86)}\Roblox\Versions\*\RobloxStudioBeta.exe" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+$local = "$env:SystemDrive\Users\$env:USERNAME\AppData\Local"
+if (-not (Test-Path -LiteralPath $local)) { $local = $env:LOCALAPPDATA }
+$studio = Get-ChildItem "$local\Roblox\Versions\*\RobloxStudioBeta.exe", "${env:ProgramFiles(x86)}\Roblox\Versions\*\RobloxStudioBeta.exe" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if ($studio) { "INSTALLED $($studio.FullName)" } else { 'NOT_INSTALLED' }
 if (Get-Process RobloxStudioBeta -ErrorAction SilentlyContinue) { 'RUNNING' } else { 'NOT_RUNNING' }
 ```
 
 If nothing printed `INSTALLED`, Studio isn't installed.
+
+On Windows, a sandboxed shell may not be able to see the user's running programs, so `NOT_RUNNING` isn't certain. If the user says Studio is open, believe them.
 
 ## B. Install Studio
 
@@ -53,6 +57,8 @@ If it doesn't print `INSTALLED` within 5 minutes, ask the user whether the insta
 
 ```powershell
 $ProgressPreference = 'SilentlyContinue'
+$local = "$env:SystemDrive\Users\$env:USERNAME\AppData\Local"
+if (-not (Test-Path -LiteralPath $local)) { $local = $env:LOCALAPPDATA }
 $installer = Join-Path $env:TEMP 'RobloxStudioInstaller.exe'
 Invoke-WebRequest -Uri 'https://setup.rbxcdn.com/RobloxStudioInstaller.exe' -OutFile $installer -UseBasicParsing
 $sig = Get-AuthenticodeSignature -FilePath $installer
@@ -64,12 +70,14 @@ Start-Process -FilePath $installer
 $deadline = (Get-Date).AddMinutes(5)
 do {
     Start-Sleep -Seconds 5
-    $studio = Get-ChildItem "$env:LOCALAPPDATA\Roblox\Versions\*\RobloxStudioBeta.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+    $studio = Get-ChildItem "$local\Roblox\Versions\*\RobloxStudioBeta.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
 } until ($studio -or (Get-Date) -gt $deadline)
 if ($studio) { "INSTALLED $($studio.FullName)" } else { 'INSTALL_NOT_DETECTED' }
 ```
 
 Don't add `-Wait` to `Start-Process`. It would wait for Studio to close, not for the install to finish.
+
+You might not have permission to start programs on the user's Windows account, for example if the app runs commands in a sandbox. If the installer window didn't appear, or the command printed `INSTALL_NOT_DETECTED`, ask the user to check. If the installer isn't running, have them download and run it themselves from https://create.roblox.com/docs/studio/setup, then continue once they say it's done. Don't download it again yourself.
 
 ## C. Open Studio
 
@@ -82,11 +90,15 @@ for APP in /Applications/RobloxStudio.app "$HOME/Applications/RobloxStudio.app";
 **Windows (PowerShell):**
 
 ```powershell
+$local = "$env:SystemDrive\Users\$env:USERNAME\AppData\Local"
+if (-not (Test-Path -LiteralPath $local)) { $local = $env:LOCALAPPDATA }
 if (-not (Get-Process RobloxStudioBeta -ErrorAction SilentlyContinue)) {
-    $studio = Get-ChildItem "$env:LOCALAPPDATA\Roblox\Versions\*\RobloxStudioBeta.exe", "${env:ProgramFiles(x86)}\Roblox\Versions\*\RobloxStudioBeta.exe" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    $studio = Get-ChildItem "$local\Roblox\Versions\*\RobloxStudioBeta.exe", "${env:ProgramFiles(x86)}\Roblox\Versions\*\RobloxStudioBeta.exe" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1
     if ($studio) { Start-Process -FilePath $studio.FullName } else { throw 'Studio is not installed.' }
 }
 ```
+
+You might not have permission to start programs on the user's Windows account, so Studio may not open even if the command succeeds. Ask the user whether Studio opened. If it didn't, have them open **Roblox Studio** from the Start menu or a desktop shortcut.
 
 If Studio shows an update prompt, let it finish.
 

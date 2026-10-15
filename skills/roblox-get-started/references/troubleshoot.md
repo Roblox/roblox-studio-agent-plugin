@@ -15,6 +15,7 @@ Match the symptom, give the user the single fix, then re-run setup from the top.
 | Windows: the server fails to start | `mcp.bat` is missing, or the path is wrong | Check that `%LOCALAPPDATA%\Roblox\mcp.bat` exists. If it doesn't, update Studio |
 | Tool calls go to the wrong place | Several Studios are open | Call `list_roblox_studios`, confirm the place by name, and use that `studio_id` |
 | A tool mentioned in the docs is missing | Studio's tool set varies with its version and feature flags | Use the tools that are there, and suggest updating Studio |
+| The check says Studio isn't installed but the user says it is, or Studio installed somewhere its MCP server can't find it | The command ran inside the app's sandbox, which points `$HOME` or `%LOCALAPPDATA%` at its own folders | Rerun the `install.md` command outside the sandbox (`connect.md`). Don't reinstall if the user says Studio is there |
 | A download, install, or launch command is blocked | The app's sandbox can't reach the user's computer, or blocks network or GUI apps | See `connect.md` for this app. If it can't be unblocked, walk the user through the step instead |
 
 If nothing matches, say which setup step failed and what you saw. Leave the user's places and files unchanged, and don't install third-party tools to work around it.

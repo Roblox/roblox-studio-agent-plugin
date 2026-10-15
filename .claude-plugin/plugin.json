@@ -1,7 +1,7 @@
 {
   "name": "roblox-studio",
   "displayName": "Roblox Studio",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Build, script, and playtest Roblox experiences with Claude. Connects Claude to Roblox Studio's built-in MCP server and walks you through setup: installing and launching Studio with your approval, turning on the MCP server, and confirming the connection.",
   "author": {
     "name": "Roblox",
