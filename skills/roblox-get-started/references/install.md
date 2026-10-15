@@ -53,6 +53,8 @@ hdiutil detach "$VOL" >/dev/null 2>&1 || true
 
 If it doesn't print `INSTALLED` within 5 minutes, ask the user whether the installer is still running or showed an error. Don't download it again unless they ask.
 
+You might not have permission to open apps from a sandboxed shell. If the installer doesn't open, or `open` fails, ask the user to download and run it themselves from https://create.roblox.com/docs/studio/setup, then continue once they say it's done.
+
 **Windows (PowerShell):** download the installer, check that Roblox signed it, and start it. The installer opens its own window and launches Studio when it's done. Give the command a timeout of at least 6 minutes.
 
 ```powershell
@@ -86,6 +88,8 @@ You might not have permission to start programs on the user's Windows account, f
 ```zsh
 for APP in /Applications/RobloxStudio.app "$HOME/Applications/RobloxStudio.app"; do [ -d "$APP" ] && { pgrep -x RobloxStudio >/dev/null || open "$APP"; break; }; done
 ```
+
+You might not have permission to open apps from a sandboxed shell. If `open` fails (for example with `kLSNoExecutableErr` or `-10827`), or Studio quits right away, Studio is probably fine. Don't reinstall it, and don't run its executable directly. Ask the user to open **Roblox Studio** from Applications, Launchpad, or Spotlight.
 
 **Windows (PowerShell):**
 
