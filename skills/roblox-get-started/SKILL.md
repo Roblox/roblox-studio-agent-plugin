@@ -26,6 +26,7 @@ Do as much as you can yourself. The user should only have to approve once, sign 
 - Never close or force-quit Studio yourself, because the user could lose unsaved work. Ask them to quit it.
 - Don't edit Studio's settings files or change system security settings. The user turns on the MCP setting in Studio.
 - If this app can't run commands on the user's computer (see `connect.md`), don't run them. Walk the user through each step instead.
+- **Install and open Studio outside the sandbox.** A sandboxed shell can point `$HOME` or `%LOCALAPPDATA%` at its own folders, or run as a separate account. Then the installer can put Studio in the wrong place, and Studio may not start. `connect.md` says how for this app. The check in `install.md` section A is safe to run inside the sandbox. If the user says Studio is installed, believe them, even if a check said otherwise.
 - If a step fails, say which step and what you saw, then check `troubleshoot.md`.
 
 ## 1. Can this app reach Studio?

@@ -1,6 +1,6 @@
 {
   "name": "roblox-studio",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Connect ChatGPT and Codex to Roblox Studio: install, sign in, open a place, and enable and register Studio's MCP server.",
   "author": {
     "name": "Roblox",
