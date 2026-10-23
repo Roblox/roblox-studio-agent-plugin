@@ -84,10 +84,11 @@ The plugin contains no code of its own, only configuration and skill instruction
 - **During setup, after one approval from you,** it may:
   - download the Studio installer from `setup.rbxcdn.com`, check Roblox's signature, and run it
   - open Studio
+  - run those install and open commands outside your assistant's sandbox, so Studio lands where its MCP server can find it
   - in ChatGPT and Codex, register the `Roblox_Studio` server
 
   You turn on Studio's MCP server yourself; it doesn't edit Studio's settings files. It asks whether you're signed in rather than checking, never closes Studio itself, and never handles your password. [Security notes](skills/roblox-get-started/SECURITY.md) explain each step in detail.
-- **Sends to Roblox,** under your Studio account, only when your assistant uses these tools: Creator Store search and insert, AI generation, image uploads, and Roblox documentation fetches.
+- **Sends to Roblox,** under your Studio account, only when your assistant uses these tools: Creator Store search and insert, AI generation, image uploads, `subagent` tasks, and Roblox documentation fetches.
 - **Sends to your AI provider** whatever tool results your assistant reads, such as scripts, properties, console output, and screenshots, as part of your conversation.
 - **Collects nothing itself:** no telemetry, and no stored data.
 

@@ -19,14 +19,14 @@ Do as much as you can yourself. The user should only have to approve once, sign 
 
 ## Rules
 
-- **One approval, up front.** Before you change anything, list what you'll do: for example, download Studio from Roblox, install it, and open it. Ask once. That covers everything on the list. Ask again only for something that wasn't on it.
+- **One approval, up front.** Before you change anything, list what you'll do: for example, download Studio from Roblox, install it, and open it, running those commands outside the sandbox. Ask once. That covers everything on the list. Ask again only for something that wasn't on it.
 - Download only from `setup.rbxcdn.com`, and check the installer's Roblox signature (`install.md`). Don't use mirrors, package managers, third-party MCP servers, or `npx` packages.
 - Never ask for, read, or type the user's Roblox password. The user signs in to Studio themselves.
 - **Ask whether the user is signed in.** Ask "Are you signed in to Roblox Studio?" and believe the answer. Don't try to check it yourself.
 - Never close or force-quit Studio yourself, because the user could lose unsaved work. Ask them to quit it.
 - Don't edit Studio's settings files or change system security settings. The user turns on the MCP setting in Studio.
 - If this app can't run commands on the user's computer (see `connect.md`), don't run them. Walk the user through each step instead.
-- **Install and open Studio outside the sandbox.** A sandboxed shell can point `$HOME` or `%LOCALAPPDATA%` at its own folders, or run as a separate account. Then the installer can put Studio in the wrong place, and Studio may not start. `connect.md` says how for this app. The check in `install.md` section A is safe to run inside the sandbox. If the user says Studio is installed, believe them, even if a check said otherwise.
+- **Ask before running anything outside the sandbox.** A sandboxed shell can point `$HOME` or `%LOCALAPPDATA%` at its own folders, or run as a separate account. Then the installer can put Studio in the wrong place, and Studio may not start. So installing and opening Studio need to run outside the sandbox, but only after the user approves it as part of the up-front list. `connect.md` says how for this app. If the user says no, walk them through installing and opening Studio themselves. The check in `install.md` section A is safe to run inside the sandbox. If the user says Studio is installed, believe them, even if a check said otherwise.
 - If a step fails, say which step and what you saw, then check `troubleshoot.md`.
 
 ## 1. Can this app reach Studio?
@@ -49,7 +49,7 @@ Without asking, run the read-only check in `install.md` section A.
 
 ## 4. Ask once
 
-Tell the user, in one short list, what's missing and what you'll do about it. Mention that Studio is free and comes from Roblox's official download server. Then ask for approval.
+Tell the user, in one short list, what's missing and what you'll do about it. If you'll install or open Studio, say that you'll run those commands outside the sandbox. Mention that Studio is free and comes from Roblox's official download server. Then ask for approval.
 
 If the user would rather install Studio themselves, send them to https://create.roblox.com/docs/studio/setup. Wait until they say it's done, then continue from step 5.
 
