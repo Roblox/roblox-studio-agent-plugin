@@ -27,7 +27,7 @@ If the user asked for more than setup, such as making a game, and has to start a
 
 ### Where this can run
 
-- **Claude Code** on the user's Mac or PC can run the commands in `install.md` directly.
+- **Claude Code** on the user's Mac or PC can run the commands in `install.md` directly. If it runs commands in a sandbox, run the install and open commands (`install.md` sections B and C) outside it, which shows the user Claude Code's permission prompt. If the user declines, or the sandbox doesn't allow it, walk them through that step. Never change the sandbox's settings.
 - **Cowork** may run commands in a sandbox that can't reach the user's computer. If a check shows a Linux machine (`uname` prints `Linux`), or a command can't see the user's files, don't run `install.md`. Walk the user through each step instead.
 - **claude.ai chat** can't run Studio's local server. Say so, and keep helping without Studio.
 
