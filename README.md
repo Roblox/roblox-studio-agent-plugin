@@ -64,7 +64,7 @@ For Roblox-specific know-how, your assistant uses the skills built into your ver
 
 **Read-only:** `list_roblox_studios`, `get_studio_state`, `get_console_output`, `script_read`, `script_search`, `script_grep`, `search_game_tree`, `inspect_instance`, `screen_capture`, `http_get` (Roblox documentation only), `skill`, `search_asset`, `wait_job_finished`, `store_image`.
 
-**Change your place or account:** `execute_luau`, `multi_edit`, `insert_asset`, `generate_mesh`, `generate_material`, `generate_procedural_model`, `generate_texture`, `segment_mesh`, `upload_image`, `start_stop_play`, `character_navigation`, `user_keyboard_input`, `user_mouse_input`, `subagent`.
+**Change your place or account:** `execute_luau`, `multi_edit`, `insert_asset`, `generate_mesh`, `generate_material`, `generate_procedural_model`, `generate_texture`, `segment_mesh`, `upload_image`, `start_stop_play`, `character_navigation`, `user_keyboard_input`, `user_mouse_input`, `subagent`, `open_cloud_invoke`.
 
 </details>
 
@@ -88,7 +88,7 @@ The plugin contains no code of its own, only configuration and skill instruction
   - in ChatGPT and Codex, register the `Roblox_Studio` server
 
   You turn on Studio's MCP server yourself; it doesn't edit Studio's settings files. It asks whether you're signed in rather than checking, never closes Studio itself, and never handles your password. [Security notes](skills/roblox-get-started/SECURITY.md) explain each step in detail.
-- **Sends to Roblox,** under your Studio account, only when your assistant uses these tools: Creator Store search and insert, AI generation, image uploads, `subagent` tasks, and Roblox documentation fetches.
+- **Sends to Roblox,** under your Studio account, only when your assistant uses these tools: Creator Store search and insert, AI generation, image uploads, `subagent` tasks, Open Cloud API requests (limited to the scopes you've granted in Assistant settings), and Roblox documentation fetches.
 - **Sends to your AI provider** whatever tool results your assistant reads, such as scripts, properties, console output, and screenshots, as part of your conversation.
 - **Collects nothing itself:** no telemetry, and no stored data.
 

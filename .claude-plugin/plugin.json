@@ -1,7 +1,7 @@
 {
   "name": "roblox-studio",
   "displayName": "Roblox Studio",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Build, script, and playtest Roblox experiences with Claude, connected live to Roblox Studio. Generate meshes, materials, and textures, upload images, and get guided setup.",
   "author": {
     "name": "Roblox",
